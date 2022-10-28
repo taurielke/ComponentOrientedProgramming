@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using WindowsFormsControlLibraryKutygin.VisualComponents;
 using listBoxControlKutyginn;
-
+using NonVisualControlLibrary;
 using OnlineStoreDatabaseImplement.Models;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
@@ -19,7 +19,11 @@ using WindowsFormsControlLibraryKutygin.NonVisualComponents;
 using WindowsFormsControlLibraryKutygin.NonVisualComponents.HelperModels;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using DocumentFormat.OpenXml.Drawing.Charts;
+using WindowsFormsControlLibrary;
 using Xceed.Document.NET;
+using NonVisualControlLibrary.HelperModels;
+using NonVisualControlLibrary.Enums;
+using System.Windows.Data;
 
 namespace OnlineStoreView.Plugin
 {
@@ -158,51 +162,60 @@ namespace OnlineStoreView.Plugin
         }
         public bool CreateChartDocument(PluginsConventionSaveDocument saveDocument)
         {
-            List<Test> chartSeriesList = new List<Test>();
-            List<DateTime?> dates = new List<DateTime?>();
-            WordLinearDiagramComponent wcld = new WordLinearDiagramComponent();
+            LinearDiagramWord ldw = new LinearDiagramWord();
+            List<DateTime> datesTime = new List<DateTime>();
+            List<string> dates = new List<string>();
+
             try
             {
-            var orders = orderLogic.Read(null);
-            var cities = destinationCityLogic.Read(null);
-            string[] xSeries = new string[cities.Count()];
-            for (int i = 0; i < orders.Count; ++i)
-            {
-                if (!dates.Contains(orders[i].DestinationDate))
+                var orders = orderLogic.Read(null);
+                var cities = destinationCityLogic.Read(null);
+                for (int i = 0; i < orders.Count; ++i)
                 {
-                    dates.Add(orders[i].DestinationDate);
-                }
-            }
-            for (int i = 0; i < dates.Count; ++i)
-            {
-                DateTime? name = dates[i];
-                int kek = 0;
-                double[] values = new double[xSeries.Length];
-                for (int u = 0; u < xSeries.Length; ++u)
-                {
-                    int value = 0;
-                    for (int j = 0; j < orders.Count; ++j)
+                    if (!datesTime.Contains((DateTime)orders[i].DestinationDate))
                     {
-                        if (orders[j].DestinationDate == name && orders[j].DestinationCity == xSeries[u])
-                        {
-                            value += 1;
-                        }
+                        datesTime.Add((DateTime)orders[i].DestinationDate);
                     }
-                    kek = value;
                 }
-                 chartSeriesList.Add(new Test
-                 {
-                    name = name.ToString(),
-                    value = kek
-                });
-            }
 
-            wcld.Report(
-                saveDocument.FileName,
-                "Заказы по датам",  "диаграмма",
-                ChartLegendPosition.Bottom,
-                chartSeriesList
-            );
+                foreach (var d in datesTime)
+                {
+                    if (!dates.Contains(d.ToShortDateString()))
+                    {
+                        dates.Add(d.ToShortDateString());
+                    }
+                }
+
+                Dictionary<string, List<DiagramData>> diagrams = new Dictionary<string, List<DiagramData>>();
+
+                foreach (var c in cities)
+                {
+                    List<DiagramData> chartSeriesList = new List<DiagramData>();
+                    for (int i = 0; i < dates.Count; ++i)
+                    {
+                        string date = dates[i];
+                        int orderAmount = 0;
+                        int value = 0;
+                        for (int j = 0; j < orders.Count; ++j)
+                        {
+                            if (orders[j].DestinationDate.ToString().Contains(date) && orders[j].DestinationCity == c.Name)
+                            {
+                                value += 1;
+                            }
+                        }
+                        orderAmount = value;
+                        chartSeriesList.Add(new DiagramData
+                        {
+                            name = date.ToString(),
+                            value = orderAmount,
+                        });
+                    }
+
+                    diagrams.Add(c.Name, chartSeriesList);
+                }
+
+                ldw.ParametersInput(saveDocument.FileName, "Заказы по городам и датам", "Визуальное представление - линейная диаграмма",
+                    DiagramLegendPosition.Bottom, diagrams);
                 return true;
             }
             catch (Exception ex)
