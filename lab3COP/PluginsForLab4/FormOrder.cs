@@ -10,7 +10,7 @@ using System.Windows.Forms;
 using OnlineStoreDatabaseImplement.Logics;
 using OnlineStoreDatabaseImplement.Models;
 
-namespace OnlineStoreView.Plugin
+namespace PluginsForLab4.Plugin
 {
     public partial class FormOrder : Form
     {
@@ -29,16 +29,11 @@ namespace OnlineStoreView.Plugin
             for (int i = 0; i < destCities.Count; ++i)
             {
                 citiesNames.Add(destCities[i].Name);
-                //ilbekovComboBoxMeasures.AddItem(units[i].Name);
             }
 
             choiceComponent1.FillList(citiesNames);
-
             choiceComponent1.EventSelectedValueChanged += SmthChanged;
             timePickBox1.SelectedTimeChanged += SmthChanged;
-
-            /*ilbekovComboBoxMeasures.SelectedIndexChanged += SmthChanged;
-            lipatovTextBoxCountry.CheckedTextBoxChanged += SmthChanged;*/
         }
 
         private void SmthChanged(object sender, EventArgs e)
@@ -64,9 +59,6 @@ namespace OnlineStoreView.Plugin
                         textBoxTrack6.Text = view.Track6;
                         timePickBox1.TimePicked = view.DestinationDate;
                         choiceComponent1.ChoosenLine = view.DestinationCity;
-
-                        //lipatovTextBoxCountry.InputText = view.Country;
-                        //ilbekovComboBoxMeasures.ChoosenItem = view.UnitMeasurement;
                     }
                 }
                 catch (Exception ex)

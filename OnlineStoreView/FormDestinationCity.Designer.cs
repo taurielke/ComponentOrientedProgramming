@@ -1,4 +1,4 @@
-﻿namespace OnlineStoreView.Plugin
+﻿namespace OnlineStoreView
 {
     partial class FormDestinationCity
     {

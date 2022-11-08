@@ -1,6 +1,6 @@
 ﻿using lab1COP.Components;
 using lab1COP.NonVisualComponents;
-using OnlineStoreView.Plugins;
+using Tools.Plugins;
 using OnlineStoreDatabaseImplement.Logics;
 using System;
 using System.Collections.Generic;
@@ -24,9 +24,11 @@ using Xceed.Document.NET;
 using NonVisualControlLibrary.HelperModels;
 using NonVisualControlLibrary.Enums;
 using System.Windows.Data;
+using System.ComponentModel.Composition;
 
-namespace OnlineStoreView.Plugin
+namespace PluginsForLab4.Plugin
 {
+    [Export(typeof(IPluginsConvention))]
     public class MainPluginConvention : IPluginsConvention
     {
         private listBoxControl listBoxControl = new listBoxControl();
@@ -35,7 +37,7 @@ namespace OnlineStoreView.Plugin
 
         public MainPluginConvention()
         {
-            listBoxControl.AddTemplate("{ClientName} {Id} {DestinationCity} {DestinationDate}                                                                                      {Track1}" +
+            listBoxControl.AddTemplate("{DestinationCity} {Id} {ClientName} {DestinationDate}                                                                                      {Track1}" +
                 "{Track2} {Track3} {Track4} {Track5} {Track6}", '{' , '}');
             ReloadData();
         }

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OnlineStoreView.Plugins
+namespace Tools.Plugins
 {
     public class PluginsConventionElement
     {

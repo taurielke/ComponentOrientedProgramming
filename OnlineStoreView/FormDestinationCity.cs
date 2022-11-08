@@ -10,7 +10,7 @@ using System.Windows.Forms;
 using OnlineStoreDatabaseImplement.Logics;
 using OnlineStoreDatabaseImplement.Models;
 
-namespace OnlineStoreView.Plugin
+namespace OnlineStoreView
 {
     public partial class FormDestinationCity : Form
     {

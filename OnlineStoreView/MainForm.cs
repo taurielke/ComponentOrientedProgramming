@@ -1,5 +1,4 @@
-﻿using OnlineStoreView.Plugins;
-using OnlineStoreView.Plugin;
+﻿using Tools.Plugins;
 using System.Collections.Generic;
 using System.Windows.Forms;
 using System;
@@ -21,22 +20,17 @@ namespace OnlineStoreView
         {
             InitializeComponent();
             _plugins = LoadPlugins();
+            _selectedPlugin = string.Empty;
         }
         private Dictionary<string, IPluginsConvention> LoadPlugins()
         {
-            // TODO Заполнить IPluginsConvention
-            // TODO Заполнить пункт меню "Справочники" на основе IPluginsConvention.PluginName
-            // TODO Например, создавать ToolStripMenuItem, привязывать к ним обработку событий и добавлять в menuStrip
-            // TODO При выборе пункта меню получать UserControl и заполнять элемент  panelControl этим контролом на всю площадь
-            // Пример: panelControl.Controls.Clear(); panelControl.Controls.Add(ctrl);
+            PluginsManager manager = new PluginsManager();
+            Dictionary<string, IPluginsConvention> dic = manager.dictionary;
 
-            var dic = new Dictionary<string, IPluginsConvention>();
-            var mainPlugin = new MainPluginConvention();
-            dic.Add(mainPlugin.PluginName, mainPlugin);
-
+            
             System.Windows.Forms.ToolStripItem[] toolStripItems = new System.Windows.Forms.ToolStripItem[2];
             ToolStripMenuItem menuItemOrders = new ToolStripMenuItem();
-            menuItemOrders.Text = mainPlugin.PluginName;
+            menuItemOrders.Text = "Заказы";
             menuItemOrders.Click += MenuItemOrders_Click;
             toolStripItems[0] = menuItemOrders;
 

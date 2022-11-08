@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineStoreDatabaseImplemen
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineStoreView", "..\OnlineStoreView\OnlineStoreView.csproj", "{9C54D5E0-8932-42C1-92E1-F890E6F4D4AB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tools", "Tools\Tools.csproj", "{54635791-5415-4F55-89A9-700C830FACD6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PluginsForLab4", "PluginsForLab4\PluginsForLab4.csproj", "{39E5FF4E-5CD5-49AA-B557-37B4323ECD12}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{9C54D5E0-8932-42C1-92E1-F890E6F4D4AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9C54D5E0-8932-42C1-92E1-F890E6F4D4AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9C54D5E0-8932-42C1-92E1-F890E6F4D4AB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{54635791-5415-4F55-89A9-700C830FACD6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{54635791-5415-4F55-89A9-700C830FACD6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{54635791-5415-4F55-89A9-700C830FACD6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{54635791-5415-4F55-89A9-700C830FACD6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{39E5FF4E-5CD5-49AA-B557-37B4323ECD12}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{39E5FF4E-5CD5-49AA-B557-37B4323ECD12}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{39E5FF4E-5CD5-49AA-B557-37B4323ECD12}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{39E5FF4E-5CD5-49AA-B557-37B4323ECD12}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

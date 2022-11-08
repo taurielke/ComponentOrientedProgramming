@@ -1,5 +1,5 @@
 ﻿
-namespace OnlineStoreView.Plugin
+namespace PluginsForLab4.Plugin
 {
     partial class FormOrder
     {
